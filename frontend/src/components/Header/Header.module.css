@@ -1,0 +1,267 @@
+.links-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.link-visit {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.link-visit:hover {
+  color: var(--primary-color);
+}
+
+.link-visit span {
+  font-size: 0.8rem;
+  padding: 0px 10px;
+}
+
+.link-buy-tickets {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.link-buy-tickets:hover {
+  color: var(--primary-color);
+}
+
+.link-buy-tickets span {
+  font-size: 0.8rem;
+  padding: 0px 10px;
+}
+
+.social-links {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.863);
+}
+
+.social-links:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.social-links i {
+  padding: 3.5px;
+}
+
+
+.header {
+  position: relative;
+  padding: 0 2rem;
+}
+
+.headerFixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0 2rem;
+  z-index: 1000;
+  background-color: rgba(14, 13, 13, 0.63);
+}
+
+.navBar {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: rgba(92, 92, 92, 0.548);
+  padding-left: 15px;
+  padding-right: 15px;
+
+}
+
+.navBarFixed {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.logo {
+  width: 140px;
+  position: relative;
+}
+
+.RR-logo {
+  width: 26%;
+  margin: 0px 5px;
+}
+
+.links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.toggle_btn {
+  color: var(--white-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+.items {
+  list-style: none;
+}
+
+.items .navItem,
+.logo,
+.action_btn {
+  text-decoration: none;
+  color: var(--white-color);
+  font-size: 1rem;
+}
+
+.navItem:hover,
+.logo:hover,
+.action_btn:hover {
+  color: var(--primary-color);
+}
+
+
+.action_btn {
+  background-color: transparent;
+  color: var(--white-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0px 2px;
+}
+
+.action_btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.action_btn:active {
+  scale: 0.95;
+}
+
+.dropdown_menu {
+  line-height: 1.2rem;
+  display: none;
+  right: 2rem;
+  top: 70px;
+  width: 380px;
+  height: 0;
+  background-color: rgba(92, 92, 92, 0.548);
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  margin: auto;
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  visibility: hidden;
+  z-index: 20;
+  position: absolute;
+}
+
+.dropdown_menu.open {
+  height: 310px;
+  visibility: visible;
+}
+
+.dropdown_menu .items {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown_menu .action_btn {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+@media(max-width: 992px) {
+
+  .navBar .links,
+  .navBar .action_btn {
+    display: none;
+  }
+
+  .navBar .toggle_btn {
+    display: block;
+  }
+
+  .dropdown_menu {
+    display: block;
+  }
+}
+
+@media(max-width: 576px) {
+  .dropdown_menu {
+    left: 2rem;
+    width: unset;
+  }
+
+  .RR-logo {
+    margin: 0px;
+  }
+
+  .action_btn {
+    background-color: var(--primary-color);
+  }
+
+  .action_btn:hover {
+    background-color: var(--button-hover-color);
+    color: var(--white-color);
+  }
+}
+
+.login_popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(92, 92, 92, 0.548);
+  padding: 0px;
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+.close_popup {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.close_popup_btn {
+  font-size: 2rem;
+  color: var(--white-color);
+}
+
+.cart-login-container {
+  display: flex;
+}
+
+@media (max-width:550px) {
+  .login_popup {
+    width: 85%;
+  }
+}
+
+.active{
+  color: var(--primary-color);
+}

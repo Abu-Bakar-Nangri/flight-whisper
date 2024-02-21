@@ -1,0 +1,164 @@
+.container-fluid{
+    background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.9)), url(https://images.unsplash.com/photo-1573068057232-fa17a193d54d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    height: 16rem;
+    text-align: center;
+}
+
+.container-fluid h1{
+    font-size: 2.8rem;
+    padding-top: 30px;
+    color: var(--white-color);
+    letter-spacing: 0.4rem;
+    font-weight: 500;
+}
+
+.home-link{
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.1rem;
+}
+
+.arrow{
+    color: var(--white-color);
+    padding: 10px;
+}
+
+.home-link:hover{
+    color: var(--primary-color);
+}
+
+.about-link{
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.1rem;
+}
+
+.about-link:hover{
+    color: var(--primary-color);
+}
+
+.aboutus-container {
+    margin: 3rem auto;
+    display: grid;
+    height: 100hv;
+    grid-template-columns: 0.6fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "aboutus-img aboutus-details";
+    text-align: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.082);
+}
+
+.aboutus-img {
+    grid-area: aboutus-img;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    transition: transform 0.3s ease-in-out;
+    cursor: zoom-in;
+    object-fit: cover;
+}
+
+.img:hover {
+    transform: scale(1.05);
+}
+
+.aboutus-details {
+    grid-area: aboutus-details;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    padding: 20px;
+}
+
+
+.container-vision{
+    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1618754087664-96688bcf29a3?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-vision-about h1{
+    font-size: 3rem;
+    color: var(--white-color);
+    padding: 80px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:550px) {
+    .container-fluid h1{
+        font-size: 2.5rem;
+        letter-spacing: 0.2rem;
+    }
+    .home-link{
+        font-size: 0.9rem;
+    }
+    .about-link{
+        font-size: 0.9rem;
+    }
+    .aboutus-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: fr fr;
+        grid-template-areas: "aboutus-img" "aboutus-details";
+    }
+    .aboutus-img {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .img {
+        width: 100%;
+    }
+    .container-vision-about h1{
+        font-size: 1.4rem;
+        padding: 80px 10px;
+    }
+}
+
+@media (min-width:551px)and (max-width:1024px){
+    .aboutus-img {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .img {
+        width: 100%;
+    }
+}
