@@ -2,9 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../Models/userModel");
 const generateToken = require("../utils/generateToken");
 
-// @desc    Register a new user
-// @route   POST /api/users
-// @access  Public
+
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, phoneNo, password } = req.body;
 
@@ -55,4 +53,32 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const updateUserProfile = asyncHandler(async (req,res)=>{
+  const {id} = req.params;
+  const updates = req.body;
+  try {
+    let user;
+    try {
+      user = await User.findById(id);
+    } catch (error) {
+      return res.status(500).json({ message: 'Error finding user', error: error.message });
+    }
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    for (const key in updates) {
+      if (key !== 'dynamicFields') {
+        user[key] = updates[key];
+      }
+    }
+    await user.save();
+
+    res.status(200).json({ message: 'User updated successfully', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating user', error: error.message });
+  }
+});
+
+module.exports = { registerUser, authUser,updateUserProfile };
