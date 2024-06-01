@@ -48,6 +48,16 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       phoneNo: user.phoneNo,
+      address:{
+        street:user.address.street,
+        city:user.address.city,
+        province: user.address.province,
+        postalCode:user.address.postalCode,
+        country:user.address.country,
+      },
+      dob:user.dob,
+      gender:user.gender,
+      nationality:user.nationality,
       token: generateToken(user._id),
     });
   } else {
@@ -87,6 +97,27 @@ const updateUserProfile = asyncHandler(async (req,res)=>{
   }
 });
 
+const updateUserPassword = async (req, res) => {
+  const { email } = req.params;
+  const { password } = req.body;
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.password = password;
+
+    await user.save();
+
+    res.status(200).json({ message: 'User password updated successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating user password', error: error.message });
+  }
+};
+
+
 
 
 const resetPassword = asyncHandler(async (req, res) => {
@@ -98,9 +129,9 @@ const resetPassword = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    const code = generateVerificationCode(); // Generate verification code
+    const code = generateVerificationCode(4); 
 
-    await sendVerificationMail(email, code); // Send verification email
+    await sendVerificationMail(email, code);
 
     res.status(200).json({ message: 'Verification code sent to email', code });
   } catch (error) {
@@ -109,29 +140,28 @@ const resetPassword = asyncHandler(async (req, res) => {
   }
 });
 
-// Function to generate verification code
-const generateVerificationCode = () => {
-  return crypto.randomBytes(4).toString('hex'); // Generate a readable verification code
+const generateVerificationCode = (length) => {
+  const numBytes = Math.ceil(length / 2);
+  const hexString = crypto.randomBytes(numBytes).toString('hex');
+  const randomNumber = parseInt(hexString, 16);
+  return randomNumber.toString().padStart(length, '0').substring(0, length);
 };
 
-// Function to send verification email
 const sendVerificationMail = async (email, code) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 875,
-    secure: false, // true for 465, false for other ports
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
-      user: 'abubakarnangri@gmail.com',
-      pass: '12345678',
-    },
-  });
+        user: 'camryn.mccullough54@ethereal.email',
+        pass: 'RUGPPhKJuA5jvZ9Tn1'
+    }
+});
 
   const mailOptions = {
-    from: 'abubakarnangri@gmail.com',
-    to: email,
+    from: '"Maddison Foo Koch 👻" <abubakarnangri@gmail.com>',
+    to: "f2020065054@umt.edu.pk",
     subject: "Password Reset Verification Code",
-    text: `Your verification code is: ${code}`, // Plain text body
-    // html: `<p>Your verification code is: <strong>${code}</strong></p>`, // Uncomment if you want to send HTML content
+    text: `Your verification code is: ${code}`,
   };
 
   try {
@@ -170,4 +200,4 @@ const deleteAccount = async (req, res) => {
 
 
 
-module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount};
+module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount,updateUserPassword};
