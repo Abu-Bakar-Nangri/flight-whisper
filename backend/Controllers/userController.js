@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../Models/userModel");
-const generateToken = require("../utils/generateToken");
+const generateToken = require('../Utils/generateToken')
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
@@ -149,20 +149,15 @@ const deleteAccount = async (req, res) => {
   try {
     const { email } = req.params;
 
-    // Check if email is provided
     if (!email) {
       return res.status(400).json({ message: 'Please provide an email.' });
     }
 
-    // Find the user document in the database
     const userToRemove = await User.findOne({ email });
 
-    // Check if user is found
     if (!userToRemove) {
       return res.status(404).json({ message: 'User not found.' });
     }
-
-    // Remove the user from the database
     await User.deleteOne({ email });
 
     return res.status(200).json({ message: 'User removed successfully.' });
