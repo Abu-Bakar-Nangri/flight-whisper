@@ -5,7 +5,11 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
+let optCode=0;
 
+
+
+// Registration Controller
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, phoneNo, password } = req.body;
 
@@ -37,10 +41,18 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+// Login Controller
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
 
   if (user && (await user.matchPassword(password))) {
     res.status(201).json({
@@ -48,16 +60,16 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       phoneNo: user.phoneNo,
-      address:{
-        street:user.address.street,
-        city:user.address.city,
-        province: user.address.province,
-        postalCode:user.address.postalCode,
-        country:user.address.country,
+      address: {
+        street: user.address.street || '',
+        city: user.address.city || '',
+        province: user.address.province || '',
+        postalCode: user.address.postalCode || '',
+        country: user.address.country || '',
       },
-      dob:user.dob,
-      gender:user.gender,
-      nationality:user.nationality,
+      dob: user.dob,
+      gender: user.gender,
+      nationality: user.nationality,
       token: generateToken(user._id),
     });
   } else {
@@ -69,6 +81,7 @@ const authUser = asyncHandler(async (req, res) => {
 
 
 
+// Update User Profile Controller
 const updateUserProfile = asyncHandler(async (req,res)=>{
   const {id} = req.params;
   const updates = req.body;
@@ -97,6 +110,10 @@ const updateUserProfile = asyncHandler(async (req,res)=>{
   }
 });
 
+
+
+
+// Update new Password Controller
 const updateUserPassword = async (req, res) => {
   const { email } = req.params;
   const { password } = req.body;
@@ -120,6 +137,7 @@ const updateUserPassword = async (req, res) => {
 
 
 
+// Send OPT on the Email Controller
 const resetPassword = asyncHandler(async (req, res) => {
   const { email } = req.params;
 
@@ -130,7 +148,7 @@ const resetPassword = asyncHandler(async (req, res) => {
     }
 
     const code = generateVerificationCode(4); 
-
+    optCode = code;
     await sendVerificationMail(email, code);
 
     res.status(200).json({ message: 'Verification code sent to email', code });
@@ -175,6 +193,8 @@ const sendVerificationMail = async (email, code) => {
 
 
 
+
+// Delete Account  Controller
 const deleteAccount = async (req, res) => {
   try {
     const { email } = req.params;
@@ -200,4 +220,25 @@ const deleteAccount = async (req, res) => {
 
 
 
-module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount,updateUserPassword};
+// Verify Password Controller
+const verify = (otp) => {
+  return otp == optCode;
+};
+
+const verifyOTP = async (req, res) => {
+  try {
+    const { otp } = req.body;
+    const isOTPValid = verify(otp);
+
+    if (isOTPValid) {
+      res.status(200).json({ message: 'OTP is correct' });
+    } else {
+      res.status(400).json({ message: 'OTP is incorrect' });
+    }
+  } catch (error) {
+    console.error('Error verifying OTP:', error);
+    res.status(500).json({ success: false, message: 'An error occurred while verifying OTP' });
+  }
+};
+
+module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount,updateUserPassword,verifyOTP};
