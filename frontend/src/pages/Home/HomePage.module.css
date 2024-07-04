@@ -13,5 +13,37 @@
     position: absolute;
     color: var(--white-color);
     width: 100%;
-  }
-  
+}
+ 
+.trending-container{
+    margin: 25px auto;
+}
+
+.trending-container h1{
+    text-align: center;
+    padding: 15px 0px;
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+
+.Show-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto;
+}
+.Show-more-container button {
+    height: 44px;
+    padding: 0px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.Show-more-container button:hover {
+    color: var(--white-color);
+    background-color: var(--button-hover-color);
+    border: none;
+}

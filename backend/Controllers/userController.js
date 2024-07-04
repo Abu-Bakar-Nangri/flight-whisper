@@ -165,19 +165,26 @@ const generateVerificationCode = (length) => {
   return randomNumber.toString().padStart(length, '0').substring(0, length);
 };
 
+
 const sendVerificationMail = async (email, code) => {
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: 'smtp.tickpluswise.com',
+    port: 587 || 500,
+    secure: false,
     auth: {
-        user: 'camryn.mccullough54@ethereal.email',
-        pass: 'RUGPPhKJuA5jvZ9Tn1'
+        user: 'user-f6bf946ec3bece40',
+        pass: 'qoTwlmqgadoSZqxj283KAMNkUumS'
+    },
+    tls: {
+      rejectUnauthorized: false
     }
 });
 
   const mailOptions = {
-    from: '"Maddison Foo Koch 👻" <abubakarnangri@gmail.com>',
-    to: "f2020065054@umt.edu.pk",
+    //dkim-dc4e9aa0c9c0bdf6f8ca7d6fcc1cce43.abubakarnangri-com.tickpluswise.com
+    //s1_key._domainkey.abubakarnangri.com
+    from: 'v=spf1 include:smtp.tickpluswise.com ~all',
+    to: 'f2020065054@umt.edu.pk',
     subject: "Password Reset Verification Code",
     text: `Your verification code is: ${code}`,
   };

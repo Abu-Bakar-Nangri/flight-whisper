@@ -1,11 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CSS from './HomePage.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import FlightsSearch from '../../components/Home/FlighsSearch/FlightsSearch';
+import TrendingCard from '../../components/Home/TrendingCountriesCard/TrendingCard';
 
+const places = [
+  {
+    img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34',
+    city: 'Paris',
+    country: 'France'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'New York',
+    country: 'USA'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1494&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'Tokyo',
+    country: 'Japan'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29',
+    city: 'Sydney',
+    country: 'Australia'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'London',
+    country: 'United Kingdom'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401',
+    city: 'Barcelona',
+    country: 'Spain'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'Berlin',
+    country: 'Germany'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+    city: 'Moscow',
+    country: 'Russia'
+  },
+  {
+    img: 'https://images.unsplash.com/flagged/photo-1559717865-a99cac1c95d8?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'Dubai',
+    country: 'UAE'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'Rome',
+    country: 'Italy'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'Istanbul',
+    country: 'Turkey'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    city: 'Amsterdam',
+    country: 'Netherlands'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1512427691650-1e8d7e2bdb13',
+    city: 'Rio de Janeiro',
+    country: 'Brazil'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1570083428586-cdeaa9384856',
+    city: 'Cape Town',
+    country: 'South Africa'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1597753525469-b4e03e517b1d',
+    city: 'Hong Kong',
+    country: 'China'
+  }
+];
 
 const HomePage = () => {
+  const [range, setRange] = useState(6);
+  const [loading, setLoading] = useState(false);
+
+  const handleData = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setRange(prevRange => prevRange + 3);
+      setLoading(false);
+    }, 1000);
+  };
 
   return (
     <div>
@@ -15,13 +103,18 @@ const HomePage = () => {
           <FlightsSearch />
         </div>
       </div>
-      <div className='container'>
-        <h1>Hotels</h1>
-        <h1>Hotels</h1>
-        <h1>Hotels</h1>
-        <h1>Hotels</h1>
-        <h1>Hotels</h1>
-        <h1>Hotels</h1>
+      <div className={`${CSS['trending-container']} container`}>
+        <h1>Trending Countries</h1>
+        <TrendingCard places={places.slice(0, range)} />
+      </div>
+      <div className={`${CSS['Show-more-container']} container`}>
+        <button onClick={handleData} disabled={loading}>
+          {loading ? 'Loading...' : 'Show more'}
+        </button>
+      </div>
+      <div className={`${CSS['trending-container']} container`}>
+        <h1>Popular Destinations</h1>
+        
       </div>
       <Footer />
     </div>
