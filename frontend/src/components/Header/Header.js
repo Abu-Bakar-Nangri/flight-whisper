@@ -81,9 +81,14 @@ const Header = () => {
                             <Link className={CSS.navItem} to={'/about'}>About</Link>
                         </li>
                     </ul>
-                    <div className={CSS['cart-login-container']}>
-                        <div className={CSS.action_btn} onClick={toggleLoginPopup}>
+                    <div className={CSS.dropdown}>
+                        <button className={CSS.action_btn}>
                             <i className="fa-solid fa-user"></i>
+                        </button>
+                        <div className={CSS['dropdown-content']}>
+                            <a href="#">Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="#" onClick={toggleLoginPopup} >Login</a>
                         </div>
                     </div>
                     <div className={CSS.toggle_btn} onClick={toggleMenu}>
