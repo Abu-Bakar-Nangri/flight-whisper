@@ -168,32 +168,25 @@ const generateVerificationCode = (length) => {
 
 const sendVerificationMail = async (email, code) => {
   const transporter = nodemailer.createTransport({
-    host: 'smtp.tickpluswise.com',
+    host: 'smtp.gmail.com',
     port: 587 || 500,
     secure: false,
     auth: {
-        user: 'user-f6bf946ec3bece40',
-        pass: 'qoTwlmqgadoSZqxj283KAMNkUumS'
-    },
-    tls: {
-      rejectUnauthorized: false
+        user: process.env.username,
+        pass: process.env.password
     }
 });
 
   const mailOptions = {
-    //dkim-dc4e9aa0c9c0bdf6f8ca7d6fcc1cce43.abubakarnangri-com.tickpluswise.com
-    //s1_key._domainkey.abubakarnangri.com
-    from: 'v=spf1 include:smtp.tickpluswise.com ~all',
-    to: 'f2020065054@umt.edu.pk',
+    from: '"Abu Bakar Siddique" <abubakarnangri@gmail.com>',
+    to: email,
     subject: "Password Reset Verification Code",
     text: `Your verification code is: ${code}`,
   };
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
   } catch (error) {
-    console.log(error);
     throw new Error('Error sending email');
   }
 };
