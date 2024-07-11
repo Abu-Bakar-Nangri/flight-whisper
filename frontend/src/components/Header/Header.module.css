@@ -232,7 +232,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(92, 92, 92, 0.548);
+  background-color: rgba(0, 0, 0, 0.938);
   padding: 0px;
   z-index: 1000;
   border-radius: 10px;

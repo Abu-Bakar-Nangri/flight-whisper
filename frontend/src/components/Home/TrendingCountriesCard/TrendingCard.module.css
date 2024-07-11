@@ -1,10 +1,10 @@
 
 .trending-contries{
-    width: 300px;
+    width: 31%;
     display: inline-block;
     margin: 10px 10px;
     border-radius: 6px;
-    background-color: rgb(230, 227, 227);
+    background-color:  rgb(230, 230, 230);
     position: relative;
 }
 
@@ -36,9 +36,40 @@
 .trending-info h2{
     font-size: 1.4rem;
     font-weight: 500;
+    
 }
 .trending-info h3{
     font-size: 1.1rem;
     font-weight: 400;
-color: rgba(0, 0, 0, 0.699);
+    color: rgba(0, 0, 0, 0.699);
 }
+
+
+
+  @media only screen and (max-width: 600px) {
+    .trending-contries{
+        width: 96%;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .trending-contries{
+        width: 45%;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .trending-contries{
+        width: 45%;
+    }
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .trending-contries{
+        width: 31%;
+    }
+  } 
+  

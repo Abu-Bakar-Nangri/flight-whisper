@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CSS from './Header.module.css';
 import { Link ,useLocation} from 'react-router-dom'
-import LoginRegister from '../../pages/LoginRegister/LoginRegister';
 
 const Header = () => {
     const activelink = useLocation();
@@ -86,9 +85,9 @@ const Header = () => {
                             <i className="fa-solid fa-user"></i>
                         </button>
                         <div className={CSS['dropdown-content']}>
-                            <a href="#">Profile</a>
-                            <a href="#">Settings</a>
-                            <a href="#" onClick={toggleLoginPopup} >Login</a>
+                            <Link to="/" >Profile</Link>
+                            <Link to="/" >Settings</Link>
+                            <Link to="/login"  >Login</Link>
                         </div>
                     </div>
                     <div className={CSS.toggle_btn} onClick={toggleMenu}>
@@ -119,14 +118,12 @@ const Header = () => {
                     <li onClick={toggleLoginPopup} className={CSS.items}><Link className={CSS.action_btn} >Login</Link></li>
                 </div>
 
-                {showLoginPopup && (
-                    <div className={CSS.login_popup}>
-                        <LoginRegister />
-                        <div className={CSS.close_popup} onClick={toggleLoginPopup}>
-                            <span className={CSS.close_popup_btn}>&times;</span>
-                        </div>
-                    </div>
-                )}
+       
+                   
+                 
+        
+              
+           
             </header>
         </div>
     );
