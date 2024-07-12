@@ -48,8 +48,8 @@
 
 .flights-input input {
   flex: 1;
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 70px;
+  max-width: 180px;
   height: 40px;
   padding: 10px;
   outline: none;
@@ -95,6 +95,22 @@
     display: flex;
     flex-direction: column;
   }
+  .flights-input input {
+    flex: 1;
+    min-width: 300px;
+    max-width: 300px;
+    height: 40px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    margin: 2px;
+    box-sizing: border-box;
+  }
+
+  .flights-search {
+    height: 40px;
+    width: 300px;
+  }
 
 }
 
@@ -109,7 +125,8 @@
   padding: 10px;
   text-align: left;
   cursor: pointer;
-  width: 300px;
+  max-width: 260px;
+  height: 40px;
 }
 
 .dropdown-content {
@@ -155,4 +172,20 @@
 
 .adults-container p {
   padding: 10px 10px;
+}
+
+.flights-search {
+  height: 44px;
+  padding: 0px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border: none;
+}
+
+.flights-search:hover {
+  color: var(--white-color);
+  background-color: var(--button-hover-color);
+  border: none;
 }

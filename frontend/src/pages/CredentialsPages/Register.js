@@ -78,8 +78,11 @@ export default function Register() {
   };
 
   return (
+    <div className={styles.maincontainer}>
     <div className={styles.container}>
-      {loading && <div className={styles.loader}></div>}
+    {loading && <div className={styles.loader}>
+            <div className={styles.spinner}></div>
+        </div>}
       <ToastContainer />
       <h2 className={styles.login}>Register with Email</h2>
 
@@ -118,7 +121,7 @@ export default function Register() {
             placeholder="Enter password"
           />
           <span onClick={toggleShowPassword}>
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
+            {showPassword ?  '👁️' : '🙈'}
           </span>
         </div>
       </div>
@@ -133,7 +136,7 @@ export default function Register() {
             placeholder="Enter confirm password"
           />
           <span onClick={toggleShowConfirmPassword}>
-            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            {showConfirmPassword ?  '👁️' : '🙈'}
           </span>
         </div>
       </div>
@@ -148,6 +151,7 @@ export default function Register() {
           Log in
         </button>
       </div>
+    </div>
     </div>
   );
 }

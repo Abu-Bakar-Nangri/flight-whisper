@@ -65,8 +65,11 @@ const VerifyOTP = () => {
   };
 
   return (
+    <div className={styles.maincontainer}>
     <div className={styles.container}>
-      {loading && <div className={styles.loader}>Loading...</div>}
+    {loading && <div className={styles.loader}>
+            <div className={styles.spinner}></div>
+        </div>}
       <h2 className={styles.verifyOTPTitle}>Please check your email</h2>
       <p className={styles.verifyOTPSubTitle}>
         We've sent a code to <span className={styles.verifyOTPEmail}>{email}</span>
@@ -93,6 +96,7 @@ const VerifyOTP = () => {
           Send code again
         </button>
       </div>
+    </div>
     </div>
   );
 };

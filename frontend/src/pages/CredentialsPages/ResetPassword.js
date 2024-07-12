@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ResetPassword.module.css'; // Import CSS Modules
 import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ResetPassword = ({ navigation }) => {
-    const { paramName } = useParams();
-  const { email } = paramName.params;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { email } = location.state;
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -47,7 +48,7 @@ const ResetPassword = ({ navigation }) => {
 
       if (response.status === 200) {
         toast.success('Update was successful');
-        navigation.navigate('PasswordChanged');
+        navigate('/password-changed');
       } else {
         toast.error('Update failed');
       }
@@ -59,8 +60,11 @@ const ResetPassword = ({ navigation }) => {
   };
 
   return (
+    <div className={styles.maincontainer}>
     <div className={styles.container}>
-      {loading && <div className={styles.loader}>Loading...</div>}
+            {loading && <div className={styles.loader}>
+            <div className={styles.spinner}></div>
+        </div>}
       <h2 className={styles.resetTitle}>Reset password</h2>
       <p className={styles.resetSubTitle}>Please type something you'll remember</p>
       <ToastContainer />
@@ -79,7 +83,7 @@ const ResetPassword = ({ navigation }) => {
             onClick={toggleShowNewPassword}
             style={{ cursor: 'pointer' }}
           >
-            {showNewPassword ? 'visibility' : 'visibility_off'}
+            {showNewPassword ? "👁️" : "🙈"}
           </i>
         </div>
       </div>
@@ -98,13 +102,14 @@ const ResetPassword = ({ navigation }) => {
             onClick={toggleShowConfirmPassword}
             style={{ cursor: 'pointer' }}
           >
-            {showConfirmPassword ? 'visibility' : 'visibility_off'}
+            {showConfirmPassword ? "👁️" : "🙈"}
           </i>
         </div>
       </div>
       <button className={styles.resetbtn} onClick={handleResetPassword}>
         Reset password
       </button>
+    </div>
     </div>
   );
 };

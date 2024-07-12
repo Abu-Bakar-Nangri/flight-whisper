@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import  { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./ForgetPassword.module.css";
@@ -18,7 +18,7 @@ const ForgetPassword = () => {
   
     try {
       setLoading(true);
-      const response = await axios.post(`http://localhost:3699/api/users/resetPassword`, { email });
+      const response = await axios.post(`http://localhost:3699/api/users/resetPassword/${email}`);
       
       if (response.status === 200) {
         navigate("/verify-otp", { state: { code: response.data.code, email } });
@@ -28,18 +28,17 @@ const ForgetPassword = () => {
     } catch (error) {
       toast.error( error.response.data.messag|| "Failed to send reset password request");
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
-  
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
 
   return (
+    <div className={styles.maincontainer}>
     <div className={styles.container}>
-      {loading && <div className={styles.loader}></div>}
+      {loading && <div className={styles.loader}>
+            <div className={styles.spinner}></div>
+        </div>}
       <ToastContainer />
       <h2 className={styles.forgetTitle}>Forgot password?</h2>
       <p className={styles.forgetSubTitle}>
@@ -60,10 +59,10 @@ const ForgetPassword = () => {
       </button>
       <div className={styles.rememberBtnContainer}>
         <p className={styles.rememberText}>Remember password?</p>
-        <button className={styles.loginText} onClick={handleLogin}>
-          Log in
-        </button>
+        <Link className={styles.loginText} to={'/login'}>Log in</Link>
       </div>
+
+    </div>
     </div>
   );
 };

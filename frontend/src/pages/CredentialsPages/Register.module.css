@@ -1,14 +1,23 @@
+.maincontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.178), rgba(0, 0, 0, 0.808)), url(https://images.unsplash.com/photo-1539201299177-2af0fae3d77f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-position: center;
+  padding: 50px 30px ;
+}
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
     background-color: #f5f5f5;
     padding: 20px;
     max-width: 400px;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .loader {
@@ -17,12 +26,27 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 100;
   }
+
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color); /* Adjust color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
   
   .login {
     font-size: 24px;
@@ -32,7 +56,7 @@
   
   .inputGroup {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   
   .inputGroup label {
@@ -48,23 +72,37 @@
     border: 1px solid #d8dadc;
     border-radius: 6px;
     font-size: 16px;
+    height: 50px;
   }
+
+  .inputGroup input:focus {
+    border: 1px solid var(--primary-color);
+    outline: none;
+  }
+  
   
   .passwordInput {
+    position: relative; /* Ensure positioning for absolute span */
     display: flex;
     align-items: center;
-  }
-  
-  .passwordInput input {
+}
+
+.passwordInput input {
     flex: 1;
-    padding-right: 40px;
-  }
-  
-  .passwordInput span {
+    padding-right: 40px; /* Space for the span */
+    border: 1px solid #ccc; /* Example border for input */
+    border-radius: 6px;
+    height: 50px; /* Adjust height as needed */
+    z-index: -100;
+}
+
+.passwordInput span {
     position: absolute;
-    right: 10px;
+    right: 10px; /* Adjust as needed */
     cursor: pointer;
-  }
+    color: rgba(0, 0, 0, 0.7); /* Example color */
+}
+
   
   .registerBtn {
     width: 100%;
@@ -76,29 +114,42 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .registerBtn:hover {
+    background-color: var(--button-hover-color);
   }
   
   .registerBtnContainer {
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
-    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
   
   .registerBtnContainer span {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.7);
+    margin-right: 10px; 
+    line-height: 1; 
   }
   
   .loginBtn {
     font-size: 14px;
-    color: #000;
+    color: var(--primary-color);
     font-weight: bold;
-    background: none;
-    border: none;
+    text-decoration: none;
     cursor: pointer;
-    text-decoration: underline;
-    margin-left: 5px;
+    display: inline-block; 
+    border: 1px solid transparent; 
+    transition: border-color 0.3s ease; 
+    height: 20px;
   }
-  
+  .loginBtn:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+    
+}
