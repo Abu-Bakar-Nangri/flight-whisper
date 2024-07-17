@@ -13,6 +13,12 @@ const userSchema = mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    otpCode: { 
+      type: Number 
+    },
+    otpExpiration: { 
+      type: Date 
+    },
     phoneNo: {
       type: String,
       required: true,

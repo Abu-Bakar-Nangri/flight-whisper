@@ -17,7 +17,6 @@ const FlightsSearch = () => {
     const [originCity, setOriginCity] = useState('');
     const [destinationCity, setDestinationCity] = useState('');
 
-    const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
 
     const handleRadioChange = (e) => {
         setTripType(e.target.value);

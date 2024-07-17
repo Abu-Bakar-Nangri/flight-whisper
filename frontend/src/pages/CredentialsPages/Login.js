@@ -33,7 +33,7 @@ const Login = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://192.168.1.72:3699/api/users/login",
+        "http://localhost:3699/api/users/login",
         {
           email,
           password,
@@ -65,9 +65,6 @@ const Login = () => {
     navigate("/forget-password");
   };
 
-  const handleRegister = () => {
-    navigate("/register");
-  };
 
   return (
     <div className={styles.maincontainer}>

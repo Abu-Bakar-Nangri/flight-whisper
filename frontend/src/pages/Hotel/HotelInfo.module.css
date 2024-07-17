@@ -1,4 +1,3 @@
-
 .radio-container {
   text-align: left;
   padding: 15px;
@@ -27,103 +26,48 @@
   border: 1px solid white;
 }
 
-.flights-inputs {
+.hotel-inputs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
-  z-index: -1;
 }
 
-.flights-input {
+.hotel-input {
   display: flex;
   flex-direction: column;
   margin: 10px;
 }
 
-.flights-input label {
+.hotel-input label {
   font-size: 0.9rem;
+  text-align: left;
 }
 
-.flights-input input {
+.hotel-input input,
+.hotel-input select {
   flex: 1;
   min-width: 70px;
-  max-width: 180px;
-  height: 40px;
+  max-width: 300px;
+  height: 50px;
   padding: 10px;
   outline: none;
-  border: none;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
   margin: 2px;
   box-sizing: border-box;
-  border-radius: 3px;
 }
 
-.flights-input input:focus {
- border: 1px solid black;
- outline: none;
- border-radius: 3px;
-}
-
-.flights-input .button-disable {
-  background-color: #000000;
-  color: #999;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-
-
-@media screen and (max-width:550px) {
-  .radio-container {
-    text-align: left;
-    padding: 15px 3px;
-  }
-
-  .radio-container label {
-    font-size: 1rem;
-    padding: 5px;
-  }
-
-  .radio-container input[type='radio'] {
-    margin-right: 1px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 1px solid var(--black-color);
-    border-radius: 5px;
-    width: 15px;
-    height: 15px;
-    background-color: white;
-    margin-left: 20px;
-  }
-
-  .flights-inputs {
-    display: flex;
-    flex-direction: column;
-  }
-  .flights-input input {
-    flex: 1;
-    min-width: 300px;
-    max-width: 300px;
-    height: 40px;
-    padding: 10px;
-    outline: none;
-    border: none;
-    margin: 2px;
-    box-sizing: border-box;
-  }
-
-  .flights-search {
-    height: 40px;
-    width: 300px;
-  }
-
+.hotel-input input:focus {
+  border:  1px solid black;
+  outline: none;
 }
 
 .custom-dropdown {
   position: relative;
   display: inline-block;
+  max-width: 300px;
 }
 
 .dropdown-toggle {
@@ -132,36 +76,43 @@
   padding: 10px;
   text-align: left;
   cursor: pointer;
-  max-width: 260px;
   height: 40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dropdown-content {
-  display: block;
+  display: none;
   position: absolute;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
   padding: 10px;
   background-color: var(--white-color);
   color: var(--black-color);
-  width: 260px;
+  width: 100%;
+}
+
+.custom-dropdown.active .dropdown-content {
+  display: block;
 }
 
 .dropdown-content select {
-  width: 220px;
+  width: calc(100% - 20px);
   height: 40px;
   margin: 12px 0px;
   padding: 0px 10px;
-  border: 1.1px solid var(--primary-color);
-  border-radius: 6px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
 }
 
-.adults-container {
+.rooms-container,
+.guests-container {
   display: flex;
-  margin: 0px;
+  margin: 8px 0;
 }
 
-.adults-container button {
+.rooms-container button,
+.guests-container button {
   width: 40px;
   height: 40px;
   background-color: var(--primary-color);
@@ -169,19 +120,17 @@
   color: var(--white-color);
 }
 
-.adults-container button:hover {
+.rooms-container button:hover,
+.guests-container button:hover {
   background-color: var(--button-hover-color);
 }
 
-.adults-container span {
+.rooms-container span,
+.guests-container span {
   padding: 10px 15px;
 }
 
-.adults-container p {
-  padding: 10px 10px;
-}
-
-.flights-search {
+.hotel-search {
   height: 44px;
   padding: 0px 20px;
   font-size: 1.1rem;
@@ -189,10 +138,12 @@
   color: var(--white-color);
   background-color: var(--primary-color);
   border: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.flights-search:hover {
+.hotel-search:hover {
   color: var(--white-color);
   background-color: var(--button-hover-color);
-  border: none;
 }

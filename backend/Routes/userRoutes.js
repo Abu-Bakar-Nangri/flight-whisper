@@ -10,6 +10,12 @@ const loginLimiter = rateLimit({
     message: { message: 'Too many login attempts, please try again later.' },
 });
 
+const registerLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 5, 
+    message: { message: 'Too many register attempts, please try again later.' },
+});
+
 const ResetLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5, 
@@ -18,7 +24,7 @@ const ResetLimiter = rateLimit({
 
 
 
-router.post('/register', registerUser);
+router.post('/register',registerLimiter, registerUser);
 router.post('/login',loginLimiter, authUser);
 router.post('/updateProfile/:id', updateUserProfile);
 router.post('/resetPassword/:email',ResetLimiter, resetPassword);

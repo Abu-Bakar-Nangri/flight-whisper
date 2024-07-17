@@ -3,7 +3,6 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import styles from './Register.module.css';
 
 export default function Register() {
@@ -58,7 +57,7 @@ export default function Register() {
       setLoading(true);
       const registrationData = { name, email, phoneNo, password };
 
-      const response = await axios.post('http://192.168.1.72:3699/api/users/register', registrationData);
+      const response = await axios.post('http://localhost:3699/api/users/register', registrationData);
 
       if (response.status === 201) {
         toast.success('Registration successful. You can now login with your credentials');

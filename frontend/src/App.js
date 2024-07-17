@@ -1,10 +1,10 @@
-import './App.css';
-import RouteMenu from './pages/RouteMenu';
+import "./App.css";
+import RouteMenu from "./pages/RouteMenu";
 
 function App() {
   return (
-    <div >
-      <RouteMenu/>
+    <div>
+      <RouteMenu />
     </div>
   );
 }

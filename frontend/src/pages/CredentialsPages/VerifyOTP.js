@@ -33,15 +33,15 @@ const VerifyOTP = () => {
       const otpString = otp.join("");
       const otpIntegers = parseInt(otpString, 10);
   
-      const response = await axios.post('http://192.168.1.72:3699/api/users/verifyOTP', { otp: otpIntegers });
+      const response = await axios.post('http://localhost:3699/api/users/verifyOTP', {email:email, otp: otpIntegers });
   
       if (response.status === 200) { 
         navigate('/reset-password', { state: { email } });
       } else {
-        toast.error('OTP is incorrect');
+        toast.error(error.response.data.message);
       }
     } catch (error) {
-      toast.error('An error occurred during OTP verification');
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }

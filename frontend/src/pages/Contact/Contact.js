@@ -13,7 +13,7 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -48,6 +48,7 @@ const Contact = () => {
     <div>
       <div className={CSS['container-fluid']}>
         <Header />
+        <ToastContainer/>
         <h1>Contact Us</h1>
         <p >
           <Link to={'/'} className={CSS['home-link']}><span>Home</span></Link>

@@ -133,10 +133,6 @@ const updateUserPassword = async (req, res) => {
     res.status(500).json({ message: 'Error updating user password', error: error.message });
   }
 };
-
-
-
-
 // Send OPT on the Email Controller
 const resetPassword = asyncHandler(async (req, res) => {
   const { email } = req.params;
@@ -147,16 +143,23 @@ const resetPassword = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    const code = generateVerificationCode(4); 
-    optCode = code;
-    await sendVerificationMail(email, code);
+    const otp = generateVerificationCode(4); 
+    const otpExpiration = new Date(Date.now() + 5 * 60 * 1000); 
 
-    res.status(200).json({ message: 'Verification code sent to email', code });
+    // Store OTP and its expiration in the user document
+    user.otpCode = otp;
+    user.otpExpiration = otpExpiration;
+    await user.save();
+
+    // Send OTP via email
+    await sendVerificationMail(email, otp);
+
+    res.status(200).json({ message: 'Verification code sent to email' });
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: 'Error resetting password', error: error.message });
+    res.status(500).json({ message: 'Error resetting password'});
   }
 });
+
 
 const generateVerificationCode = (length) => {
   const numBytes = Math.ceil(length / 2);
@@ -194,6 +197,41 @@ const sendVerificationMail = async (email, code) => {
 
 
 
+// Verify Password Controller
+const verify = async (email, otp) => {
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  if (user.otpCode === otp && user.otpExpiration > new Date()) {
+    // Clear OTP fields after successful verification
+    user.otpCode = undefined;
+    user.otpExpiration = undefined;
+    await user.save();
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const verifyOTP = asyncHandler(async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    const isOTPValid = await verify(email, otp);
+
+    if (isOTPValid) {
+      res.status(200).json({ message: 'OTP is correct' });
+    } else {
+      res.status(400).json({ message: 'OTP is incorrect or expired' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'An error occurred while verifying OTP' });
+  }
+});
+
 // Delete Account  Controller
 const deleteAccount = async (req, res) => {
   try {
@@ -217,28 +255,5 @@ const deleteAccount = async (req, res) => {
   }
 };
 
-
-
-
-// Verify Password Controller
-const verify = (otp) => {
-  return otp == optCode;
-};
-
-const verifyOTP = async (req, res) => {
-  try {
-    const { otp } = req.body;
-    const isOTPValid = verify(otp);
-
-    if (isOTPValid) {
-      res.status(200).json({ message: 'OTP is correct' });
-    } else {
-      res.status(400).json({ message: 'OTP is incorrect' });
-    }
-  } catch (error) {
-    console.error('Error verifying OTP:', error);
-    res.status(500).json({ success: false, message: 'An error occurred while verifying OTP' });
-  }
-};
 
 module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount,updateUserPassword,verifyOTP};
