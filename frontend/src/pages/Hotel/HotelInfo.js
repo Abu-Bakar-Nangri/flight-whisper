@@ -12,10 +12,13 @@ const HotelBooking = () => {
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
     const [location, setLocation] = useState('');
-    const [roomType, setRoomType] = useState('Standard');
+    const [filteredLocations, setFilteredLocations] = useState([]);
+    const [isLocationOpen, setIsLocationOpen] = useState(false);
+
+    const locations = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']; // Example list of locations
 
     const toggleDropdown = () => {
-        setIsOpen(!isOpen);
+        setIsOpen(!isOpen); // Toggle isOpen state
     };
 
     const handleCheckInDateChange = (date) => {
@@ -51,6 +54,52 @@ const HotelBooking = () => {
         console.log('Search action performed');
     };
 
+    const handleLocationChange = (e) => {
+        const input = e.target.value;
+        setLocation(input);
+        setIsLocationOpen(true);
+        if (input) {
+            const filtered = locations.filter(loc => loc.toLowerCase().includes(input.toLowerCase()));
+            setFilteredLocations(filtered);
+        } else {
+            setFilteredLocations([]);
+        }
+    };
+
+    const handleLocationSelection = (loc) => {
+        setLocation(loc);
+        setIsLocationOpen(false);
+        setFilteredLocations([]);
+    };
+
+    const incrementRooms = () => {
+        if (rooms < 5) {
+            setRooms(rooms + 1);
+        } else {
+            toast.error('Maximum 5 rooms allowed');
+        }
+    };
+
+    const decrementRooms = () => {
+        if (rooms > 1) {
+            setRooms(rooms - 1);
+        }
+    };
+
+    const incrementGuests = () => {
+        if (guests < 10) {
+            setGuests(guests + 1);
+        } else {
+            toast.error('Maximum 10 guests allowed');
+        }
+    };
+
+    const decrementGuests = () => {
+        if (guests > 1) {
+            setGuests(guests - 1);
+        }
+    };
+
     return (
         <div>
             <ToastContainer />
@@ -61,8 +110,15 @@ const HotelBooking = () => {
                         type='text' 
                         placeholder='Destination city or hotel name' 
                         value={location} 
-                        onChange={(e) => setLocation(e.target.value)} 
+                        onChange={handleLocationChange} 
                     />
+                    {isLocationOpen && filteredLocations.length > 0 &&
+                        <div className={CSS['location-modal']}>
+                            {filteredLocations.map((loc) => (
+                                <p key={loc} onClick={() => handleLocationSelection(loc)}>{loc}</p>
+                            ))}
+                        </div>
+                    }
                 </div>
                 <div className={CSS['hotel-input']}>
                     <label>Check-in</label>
@@ -90,21 +146,21 @@ const HotelBooking = () => {
                     <label>Rooms and Guests</label>
                     <div className={CSS['custom-dropdown']}>
                         <button className={CSS['dropdown-toggle']} onClick={toggleDropdown}>
-                            {guests} guests, {rooms} room(s)
+                            {guests} guest(s), {rooms} room(s)
                         </button>
                         {isOpen && (
                             <div className={CSS['dropdown-content']}>
                                 <p>Rooms</p>
                                 <div className={CSS['rooms-container']}>
-                                    <button onClick={() => setRooms(rooms - 1)}><i className="fa-solid fa-minus"></i></button>
+                                    <button onClick={decrementRooms}><i className="fa-solid fa-minus"></i></button>
                                     <span>{rooms}</span>
-                                    <button onClick={() => setRooms(rooms + 1)}><i className="fa-solid fa-plus"></i></button>
+                                    <button onClick={incrementRooms}><i className="fa-solid fa-plus"></i></button>
                                 </div>
                                 <p>Guests</p>
                                 <div className={CSS['guests-container']}>
-                                    <button onClick={() => setGuests(guests - 1)}><i className="fa-solid fa-minus"></i></button>
+                                    <button onClick={decrementGuests}><i className="fa-solid fa-minus"></i></button>
                                     <span>{guests}</span>
-                                    <button onClick={() => setGuests(guests + 1)}><i className="fa-solid fa-plus"></i></button>
+                                    <button onClick={incrementGuests}><i className="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
                         )}

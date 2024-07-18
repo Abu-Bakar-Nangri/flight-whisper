@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const rateLimit = require('express-rate-limit');
-const { registerUser, authUser,updateUserProfile, resetPassword,deleteAccount,updateUserPassword,verifyOTP} = require('../Controllers/userController');
+const { registerUser, authUser,updateUserProfile, resetPassword,deleteAccount,updateUserPassword,verifyOTP,UserFeedback} = require('../Controllers/userController');
 
 
 const loginLimiter = rateLimit({
@@ -31,6 +31,7 @@ router.post('/resetPassword/:email',ResetLimiter, resetPassword);
 router.delete('/deleteAccount/:email', deleteAccount);
 router.post('/updateUserPassword/:email', updateUserPassword);
 router.post('/verifyOTP', verifyOTP);
+router.post('/UserFeedback', UserFeedback);
 
 
 module.exports = router;

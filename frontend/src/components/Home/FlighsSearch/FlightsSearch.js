@@ -16,7 +16,12 @@ const FlightsSearch = () => {
     const [tripType, setTripType] = useState('return');
     const [originCity, setOriginCity] = useState('');
     const [destinationCity, setDestinationCity] = useState('');
+    const [isFromOpen, setIsFromOpen] = useState(false);
+    const [isToOpen, setIsToOpen] = useState(false);
+    const [filteredFromCities, setFilteredFromCities] = useState([]);
+    const [filteredToCities, setFilteredToCities] = useState([]);
 
+    const cities = ['Lahore', 'Karachi', 'Okara', 'DGK', 'DGI'];
 
     const handleRadioChange = (e) => {
         setTripType(e.target.value);
@@ -109,7 +114,43 @@ const FlightsSearch = () => {
             return;
         }
         // Perform the search action here
-        console.log('Search action performed');
+        alert(originCity,destinationCity)
+    };
+
+    const handleOriginCityChange = (e) => {
+        const input = e.target.value;
+        setOriginCity(input);
+        setIsFromOpen(true);
+        if (input) {
+            const filtered = cities.filter(city => city.toLowerCase().includes(input.toLowerCase()));
+            setFilteredFromCities(filtered);
+        } else {
+            setFilteredFromCities([]);
+        }
+    };
+
+    const handleDestinationCityChange = (e) => {
+        const input = e.target.value;
+        setDestinationCity(input);
+        setIsToOpen(true);
+        if (input) {
+            const filtered = cities.filter(city => city.toLowerCase().includes(input.toLowerCase()));
+            setFilteredToCities(filtered);
+        } else {
+            setFilteredToCities([]);
+        }
+    };
+
+    const handleCitySelection = (city, type) => {
+        if (type === 'from') {
+            setOriginCity(city);
+            setIsFromOpen(false);
+            setFilteredFromCities([]);
+        } else if (type === 'to') {
+            setDestinationCity(city);
+            setIsToOpen(false);
+            setFilteredToCities([]);
+        }
     };
 
     return (
@@ -125,21 +166,35 @@ const FlightsSearch = () => {
             <div className={CSS['flights-inputs']}>
                 <div className={CSS['flights-input']}>
                     <label>From</label>
-                    <input 
-                        type='text' 
-                        placeholder='Origin city' 
-                        value={originCity} 
-                        onChange={(e) => setOriginCity(e.target.value)} 
+                    <input
+                        type='text'
+                        placeholder='Origin city'
+                        value={originCity}
+                        onChange={handleOriginCityChange}
                     />
+                    {isFromOpen && filteredFromCities.length > 0 &&
+                        <div className={CSS['from-modal']}>
+                            {filteredFromCities.map((city) => (
+                                <p key={city} onClick={() => handleCitySelection(city, 'from')}>{city}</p>
+                            ))}
+                        </div>
+                    }
                 </div>
                 <div className={CSS['flights-input']}>
                     <label>To</label>
-                    <input 
-                        type='text' 
-                        placeholder='Destination city' 
-                        value={destinationCity} 
-                        onChange={(e) => setDestinationCity(e.target.value)} 
+                    <input
+                        type='text'
+                        placeholder='Destination city'
+                        value={destinationCity}
+                        onChange={handleDestinationCityChange}
                     />
+                    {isToOpen && filteredToCities.length > 0 &&
+                        <div className={CSS['from-modal']}>
+                            {filteredToCities.map((city) => (
+                                <p key={city} onClick={() => handleCitySelection(city, 'to')}>{city}</p>
+                            ))}
+                        </div>
+                    }
                 </div>
                 <div className={CSS['flights-input']}>
                     <label>Depart</label>

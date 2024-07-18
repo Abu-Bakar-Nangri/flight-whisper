@@ -1,12 +1,12 @@
-.container-fluid{
-    background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.9)), url(https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+.container-fluid {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(https://images.unsplash.com/uploads/1413222992504f1b734a6/1928e537?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-size: cover;
     background-position: center;
     height: 16rem;
     text-align: center;
 }
 
-.container-fluid h1{
+.container-fluid h1 {
     font-size: 2.8rem;
     padding-top: 30px;
     color: var(--white-color);
@@ -14,38 +14,31 @@
     font-weight: 500;
 }
 
-.home-link{
+.home-link {
     text-decoration: none;
     color: var(--white-color);
     font-size: 1.1rem;
 }
 
-.arrow{
+.arrow {
     color: var(--white-color);
     padding: 10px;
 }
 
-.home-link:hover{
+.home-link:hover,
+.about-link:hover {
     color: var(--primary-color);
 }
 
-.about-link{
+.about-link {
     text-decoration: none;
     color: var(--white-color);
     font-size: 1.1rem;
 }
 
-.about-link:hover{
-    color: var(--primary-color);
-}
-
-@media screen and (max-width:550px) {
-   
-}
-
 .contact-title {
     text-align: center;
-    padding: 2rem 0 0.5rem 0;
+    padding: 2rem 0 0.1rem 0;
     font-size: 2.5rem;
     font-weight: 500;
 }
@@ -56,8 +49,7 @@
     height: 100hv;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas:
-        "contactus-img contactus-details";
+    grid-template-areas: "contactus-img contactus-details";
     text-align: center;
     position: relative;
     background-color: rgba(255, 255, 255, 0.082);
@@ -93,7 +85,6 @@
     align-items: center;
     flex-direction: row;
     gap: 20px;
-    width: 100%;
     position: relative;
 }
 
@@ -103,7 +94,6 @@
     flex-direction: column;
     align-items: flex-start;
     margin: 10px 0px 10px 0px;
-    width: auto;
 }
 
 .contactus-email {
@@ -112,6 +102,8 @@
     outline: none;
     border: none;
     font-size: 1.1rem;
+    width: 100%;
+    border: 1px solid #ccc;
 }
 
 .contactus-name {
@@ -121,6 +113,8 @@
     border: none;
     font-size: 1.1rem;
     text-transform: capitalize;
+    border: 1px solid #ccc;
+    width: 100%;
 }
 
 .contactus-subject-container,
@@ -131,6 +125,7 @@
     justify-content: center;
     margin: 10px 0px;
     position: relative;
+    width: 100%;
 }
 
 .contactus-subject {
@@ -141,6 +136,7 @@
     font-size: 1.1rem;
     width: 100%;
     text-transform: capitalize;
+    border: 1px solid #ccc;
 }
 
 .contactus-message {
@@ -149,9 +145,10 @@
     border: none;
     font-size: 1.1rem;
     width: 100%;
+    border: 1px solid #ccc;
 }
 
-.contactus-message::first-letter{
+.contactus-message::first-letter {
     text-transform: uppercase;
 }
 
@@ -169,12 +166,13 @@
 .contactus-name:focus,
 .contactus-subject:focus,
 .contactus-message:focus {
-    background-color: var(--card-color);
+    background-color: #eeeeee;
     outline-width: 1px;
     outline-style: double;
     outline-color: var(--primary-color);
     outline-offset: 0px;
-    color: var(--white-color);
+    color: var(--black-color);
+    border: none;
 }
 
 .send-btn {
@@ -194,15 +192,204 @@
     border: none;
 }
 
-@media (max-width:550px) {
-    .container-fluid h1{
+.contactInfo {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.contactInfo h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contactInfo p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.socialMedia {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.socialMedia h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.socialMedia a {
+    display: inline-block;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.map {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.map h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hours {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.hours h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hours p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.faq {
+    margin-top: 3rem;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.faq h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.faq h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.faq p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.supportResources {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.supportResources h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.supportResources a {
+    display: block;
+    margin: 0.5rem auto;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.feedback {
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.feedback h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feedback form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedback label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.feedback input,
+.feedback textarea {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.feedback textarea {
+    height: 150px;
+}
+
+.feedback button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    cursor: pointer;
+}
+
+.feedback button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.newsletter {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.newsletter input {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.newsletter button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: var(--button-hover-color);
+}
+
+@media screen and (max-width: 550px) {
+    .container-fluid h1 {
         font-size: 2.5rem;
         letter-spacing: 0.2rem;
     }
-    .home-link{
-        font-size: 0.9rem;
-    }
-    .about-link{
+    .home-link,
+    .about-link {
         font-size: 0.9rem;
     }
     .contactus-container {
@@ -233,7 +420,7 @@
     .contactus-name,
     .contactus-email,
     .contactus-subject,
-    .contactus-message{
+    .contactus-message {
         width: 18rem;
         margin: 3px 0px;
     }
@@ -242,7 +429,7 @@
     }
 }
 
-@media (min-width:551px)and (max-width:1024px){
+@media (min-width: 551px) and (max-width: 1024px) {
     .contactus-subject-container,
     .contactus-message-container {
         display: flex;
@@ -265,7 +452,7 @@
     .contactus-name,
     .contactus-email,
     .contactus-subject,
-    .contactus-message{
+    .contactus-message {
         width: 18rem;
         margin: 3px 0px;
     }

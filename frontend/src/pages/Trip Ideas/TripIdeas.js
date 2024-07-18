@@ -13,7 +13,7 @@ const TripIdeas = () => {
         <p >
           <Link to={'/'} className={CSS['home-link']}><span>Home</span></Link>
           <i className={`${CSS['arrow']} fa-solid fa-arrow-right`}></i>
-          <Link to={'/tripideas'} className={CSS['about-link']}><span>About Us</span></Link>
+          <Link to={'/tripideas'} className={CSS['about-link']}><span>Trip Ideas</span></Link>
         </p>
       </div>
       <div className='container'>

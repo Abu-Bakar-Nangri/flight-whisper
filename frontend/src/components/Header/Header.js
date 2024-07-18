@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CSS from "./Header.module.css";
 import { Link, useLocation } from "react-router-dom";
+import logo from '../../Images/logo.png'
 
 const Header = () => {
   const activelink = useLocation();
@@ -64,7 +65,7 @@ const Header = () => {
         >
           <div className={CSS.logos}>
             <Link className={CSS.logo} to={"/"}>
-              FlightWhisper
+              <img src={logo}  height={'40px'}/>
             </Link>
           </div>
           <div className={CSS.toggle_btn} onClick={toggleMenu}>
@@ -76,7 +77,7 @@ const Header = () => {
         <div className={`${CSS.dropdown_menu} ${isOpen ? CSS.open : ""}`}>
           <ul className={CSS.links}>
             <li className={CSS.items}>
-              <Link className={`${CSS.navItem} ${CSS.active}`} to={"/"}>
+              <Link className={CSS.navItem} to={"/"}>
                 Home
               </Link>
             </li>

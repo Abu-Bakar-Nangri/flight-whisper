@@ -1,3 +1,5 @@
+/* HotelInfo.module.css */
+
 .radio-container {
   text-align: left;
   padding: 15px;
@@ -60,7 +62,7 @@
 }
 
 .hotel-input input:focus {
-  border:  1px solid black;
+  border: 1px solid black;
   outline: none;
 }
 
@@ -79,10 +81,11 @@
   height: 40px;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .dropdown-content {
-  display: none;
+
   position: absolute;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -146,4 +149,67 @@
 .hotel-search:hover {
   color: var(--white-color);
   background-color: var(--button-hover-color);
+}
+
+.location-modal {
+  background-color: white;
+  border-radius: 6px;
+  width: 300px;
+  margin: auto;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  top: 85px;
+}
+
+.location-modal p {
+  text-align: left;
+  color: #000000;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.location-modal p:last-child {
+  border-bottom: none;
+}
+
+.location-modal p:hover {
+  background-color: #f0f0f0;
+}
+
+/* Styles for Room and Guest Modals */
+.room-guest-modal {
+  background-color: white;
+  border-radius: 6px;
+  width: 300px;
+  margin: auto;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  top: 85px;
+}
+
+.room-guest-modal p {
+  text-align: left;
+  color: #000000;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.room-guest-modal p:last-child {
+  border-bottom: none;
+}
+
+.room-guest-modal p:hover {
+  background-color: #f0f0f0;
 }

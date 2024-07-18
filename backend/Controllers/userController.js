@@ -4,6 +4,7 @@ const generateToken = require('../Utils/generateToken')
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const Feedback = require('../Models/UserFeedBackModel')
 
 let optCode=0;
 
@@ -256,4 +257,25 @@ const deleteAccount = async (req, res) => {
 };
 
 
-module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount,updateUserPassword,verifyOTP};
+const UserFeedback = async (req,res) => {
+  const { name, email, subject, message } = req.body;
+
+    try {
+        const newFeedback = new Feedback({
+            name,
+            email,
+            subject,
+            message,
+        });
+
+        await newFeedback.save();
+
+        res.status(201).json({ message: 'Feedback saved successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error saving feedback', error });
+    }
+  
+};
+
+
+module.exports = { registerUser, authUser,updateUserProfile ,resetPassword,deleteAccount,updateUserPassword,verifyOTP,UserFeedback};

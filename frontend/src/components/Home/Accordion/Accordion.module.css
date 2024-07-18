@@ -1,0 +1,39 @@
+/* Accordion.module.css */
+
+.accordionItem {
+    border-bottom: 1px solid #ccc;
+}
+
+.accordionHeader {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordionHeader:hover {
+    background-color: #f0f0f0;
+}
+
+.accordionHeader h5 {
+    margin: 0;
+    font-weight: 500;
+}
+
+
+.accordionContent {
+    padding: 10px;
+    
+}
+
+.accordionContent p {
+    margin: 0;
+}
+.iconOpen::before {
+    content: '-';
+}
+
+.iconClosed::before {
+    content: '+';
+}

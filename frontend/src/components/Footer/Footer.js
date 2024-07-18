@@ -1,6 +1,8 @@
 import React from 'react'
 import './Footer.css'
 import { Link } from 'react-router-dom'
+import logo from '../../Images/logo.png'
+
 
 
 export default function Footer() {
@@ -43,7 +45,7 @@ export default function Footer() {
                         <div className="col-xl-4 col-lg-4 mb-50">
                             <div className="footer-widget">
                                 <div className="footer-logo">
-                                    <Link to={'/'}><img src={''} className="img-fluid" alt="logo" /></Link>
+                                    <Link to={'/'}><img src={logo} className="img-fluid" alt="logo" /></Link>
                                 </div>
                                 <div className="footer-text">
                                     <p>Welcome to FlightWhisper
