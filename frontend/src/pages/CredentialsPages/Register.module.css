@@ -6,6 +6,7 @@
   background-size: cover;
   background-position: center;
   padding: 50px 30px ;
+  height: 100vh;
 }
 .container {
     max-width: 400px;
@@ -93,7 +94,7 @@
     border: 1px solid #ccc; /* Example border for input */
     border-radius: 6px;
     height: 50px; /* Adjust height as needed */
-    z-index: -100;
+    z-index: 100;
 }
 
 .passwordInput span {

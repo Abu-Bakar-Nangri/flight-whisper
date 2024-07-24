@@ -79,7 +79,7 @@ const Contact = () => {
           <h2>Our Location</h2>
 
 
-          <LocationMap latitude={"31.5204"} longitude={"74.3547"} />
+          <LocationMap latitude={"31.4822"} longitude={"74.3346"} />
         </div>
 
         <div className={CSS.faq}>

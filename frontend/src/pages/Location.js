@@ -11,12 +11,12 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-const LocationMap = (props) => {
-  const [location, setLocation] = useState({ latitude: props.latitude, longitude: props.longitude });
+const LocationMap = ({ latitude, longitude }) => {
+  const [location, setLocation] = useState({ latitude, longitude });
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!location.latitude || !location.longitude) {
+    if (!latitude || !longitude) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -25,15 +25,15 @@ const LocationMap = (props) => {
               longitude: position.coords.longitude,
             });
           },
-          (error) => {
-            setError(error.message);
+          (err) => {
+            setError(err.message);
           }
         );
       } else {
         setError("Geolocation is not supported by this browser.");
       }
     }
-  }, [location.latitude, location.longitude]);
+  }, [latitude, longitude]);
 
   return (
     <div>
