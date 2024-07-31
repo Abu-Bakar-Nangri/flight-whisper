@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CSS from './FlightsSearch.module.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const FlightsSearch = () => {
+    const navigate = useNavigate();
+    const [countries,setCities]= useState([])
     const [isOpen, setIsOpen] = useState(false);
     const [travelClass, setTravelClass] = useState('Economy');
     const [adult, setAdult] = useState(1);
@@ -21,7 +25,20 @@ const FlightsSearch = () => {
     const [filteredFromCities, setFilteredFromCities] = useState([]);
     const [filteredToCities, setFilteredToCities] = useState([]);
 
-    const cities = ['Lahore', 'Karachi', 'Okara', 'DGK', 'DGI'];
+
+    
+    useEffect(()=>{
+        const fetchCountries =async() => {
+            const response = await axios.get('https://restcountries.com/v3.1/independent?status=true');
+            setCities(response.data)
+        }
+        fetchCountries()
+    },[])
+
+    const cityNames = countries.map(city => city.name.common);
+    localStorage.setItem('cityNames', JSON.stringify(cityNames));
+    const cities =JSON.parse(localStorage.getItem('cityNames'));
+    
 
     const handleRadioChange = (e) => {
         setTripType(e.target.value);
@@ -113,8 +130,24 @@ const FlightsSearch = () => {
             toast.error('Please select a return date');
             return;
         }
-        // Perform the search action here
-        alert(originCity,destinationCity)
+
+        const Data = {
+            origin:originCity,
+            destination:destinationCity,
+            departDate:departDate,
+            returnDate: tripType === 'return' ? returnDate : '',
+            travelClass:travelClass,
+            tripType:tripType,
+            passenger:{
+                adult:adult,
+                children:children,
+                infant:infant,
+                total: (adult + children + infant)
+            }
+        }
+        console.log(Data.total)
+        
+        navigate('/search-flight',{state:{data:Data}})
     };
 
     const handleOriginCityChange = (e) => {

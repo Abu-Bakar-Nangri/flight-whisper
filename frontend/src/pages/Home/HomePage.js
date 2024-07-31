@@ -205,20 +205,20 @@ const HomePage = () => {
     <div>
       <div className={CSS["container-background"]}>
         <Header />
-        <div className={`${CSS["flights-container"]} container`}>
+        <div className={`${CSS["flights-container"]} container mx-auto`}>
           <FlightsSearch />
         </div>
       </div>
-      <div className={`${CSS["trending-container"]} container`}>
+      <div className={`${CSS["trending-container"]} container mx-auto`}>
         <h1>Trending Countries</h1>
         <TrendingCard places={places.slice(0, range)} />
       </div>
-      <div className={`${CSS["Show-more-container"]} container`}>
+      <div className={`${CSS["Show-more-container"]} container mx-auto`}>
         <button onClick={handleData} disabled={loading}>
           {loading ? "Loading..." : "Show more"}
         </button>
       </div>
-      <div className={`${CSS["trending-container"]} container`}>
+      <div className={`${CSS["trending-container"]} container mx-auto`}>
         <h1>Popular Destinations</h1>
         <TrendingCard places={places.slice(0, range)} />
       </div>
@@ -240,11 +240,11 @@ const HomePage = () => {
           ))}
         </Slider>
       </div>
-      <div className={`${CSS["trending-container"]} container`}>
+      <div className={`${CSS["trending-container"]} container mx-auto`}>
       <h1>Booking flights with FlightWhisper</h1>
         <Accordion />
       </div>
-      <div className={`${CSS["trending-container"]} container`}>
+      <div className={`${CSS["trending-container"]} container mx-auto`}>
       <LocationMap latitude={null} longitude={null} />
       </div>
       <Footer />

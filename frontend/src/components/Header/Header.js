@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className={`${CSS["links-container"]} container`}>
+      <div className={`${CSS["links-container"]} container mx-auto`}>
         <div>
           <Link className={CSS["link-visit"]}>
             <span>Visit Us</span>
@@ -65,7 +65,7 @@ const Header = () => {
         >
           <div className={CSS.logos}>
             <Link className={CSS.logo} to={"/"}>
-              <img src={logo}  height={'40px'}/>
+              <img src={logo} className={CSS.logo}  alt="logo" />
             </Link>
           </div>
           <div className={CSS.toggle_btn} onClick={toggleMenu}>

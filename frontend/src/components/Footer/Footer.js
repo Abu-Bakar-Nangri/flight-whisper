@@ -1,107 +1,96 @@
-import React from 'react'
-import './Footer.css'
-import { Link } from 'react-router-dom'
-import logo from '../../Images/logo.png'
-
-
+import React from 'react';
+import './Footer.css';
+import { Link } from 'react-router-dom';
+import logo from '../../Images/logo.png';
 
 export default function Footer() {
     return (
-        <footer className="footer-section pt-5">
-            <div className="container">
-                <div className="footer-cta pt-5 pb-5">
-                    <div className="row">
-                        <div className="col-xl-4 col-md-4 mb-30">
-                            <div className="single-cta">
-                                <i className="fa-solid fa-location-dot"></i>
-                                <div className="cta-text">
-                                    <h4>Find us</h4>
-                                    <span>Johar Town, Lahore, Pakistan</span>
-                                </div>
+        <footer className=" py-10 bg-footer-back text-white">
+            <div className=" container mx-auto px-10 ">
+                {/* Contact Information */}
+                <div className="pt-5 pb-5  ">
+                    <div className="flex flex-wrap justify-between">
+                        <div className="w-full md:w-1/3 mb-8 md:mb-0 flex items-start space-x-4">
+                            <i className="fa-solid fa-location-dot text-xl"></i>
+                            <div>
+                                <h4 className="text-lg font-semibold">Find us</h4>
+                                <span>Johar Town, Lahore, Pakistan</span>
                             </div>
                         </div>
-                        <div className="col-xl-4 col-md-4 mb-30">
-                            <div className="single-cta">
-                                <i className="fas fa-phone"></i>
-                                <div className="cta-text">
-                                    <h4>Call us</h4>
-                                    <span>+923245521001</span>
-                                </div>
+                        <div className="w-full md:w-1/3 mb-8 md:mb-0 flex items-start space-x-4">
+                            <i className="fas fa-phone text-xl"></i>
+                            <div>
+                                <h4 className="text-lg font-semibold">Call us</h4>
+                                <span>+923245521001</span>
                             </div>
                         </div>
-                        <div className="col-xl-4 col-md-4 mb-30">
-                            <div className="single-cta">
-                                <i className="far fa-envelope-open"></i>
-                                <div className="cta-text">
-                                    <h4>Mail us</h4>
-                                    <span>abubakarnangri@gmail.com</span>
-                                </div>
+                        <div className="w-full md:w-1/3 mb-8 md:mb-0 flex items-start space-x-4">
+                            <i className="far fa-envelope-open text-xl"></i>
+                            <div>
+                                <h4 className="text-lg font-semibold">Mail us</h4>
+                                <span>abubakarnangri@gmail.com</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="footer-content pt-5 pb-5">
-                    <div className="row">
-                        <div className="col-xl-4 col-lg-4 mb-50">
-                            <div className="footer-widget">
-                                <div className="footer-logo">
-                                    <Link to={'/'}><img src={logo} className="img-fluid" alt="logo" /></Link>
+
+                {/* Footer Content */}
+                <div className="pt-5 pb-5">
+                    <div className="flex flex-wrap justify-between">
+                        {/* Footer Widget: Logo and Social Icons */}
+                        <div className="w-full md:w-1/3 mb-8">
+                            <div>
+                                <div className="mb-4">
+                                    <Link to="/"><img src={logo} className="w-32" alt="logo" /></Link>
                                 </div>
-                                <div className="footer-text">
-                                    <p>Welcome to FlightWhisper
-                                    </p>
+                                <div className="mb-4">
+                                    <p>Welcome to FlightWhisper</p>
                                 </div>
-                                <div className="footer-social-icon">
+                                <div className="flex space-x-4">
                                     <span>Follow us</span>
-                                    <Link to="" target="_blank"><i className="fab fa-facebook-f facebook-bg"></i></Link>
-                                    <Link to="" target="_blank"><i className="fa-brands fa-instagram instagram-bg"></i></Link>
-                                    <Link to="" target="_blank"><i className="fa-brands fa-youtube youtube-bg"></i></Link>
+                                    <Link to="" target="_blank"><i className="fab fa-facebook-f text-blue-600"></i></Link>
+                                    <Link to="" target="_blank"><i className="fab fa-instagram text-pink-600"></i></Link>
+                                    <Link to="" target="_blank"><i className="fab fa-youtube text-red-600"></i></Link>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
-                            <div className="footer-widget">
-                                <div className="footer-widget-heading">
-                                    <h3>Useful Links</h3>
-                                </div>
-                                <ul>
-                                    <li><Link to="/">Home</Link></li>
-                                    <li><Link to="/hotel">Hotels</Link></li>
-                                    <li><Link to="/tripideas">Trip Ideas</Link></li>
-                                    <li><Link to="/blog">Blog</Link></li>
-                                    <li><Link to="/contact">Contact Us</Link></li>
-                                    <li><Link to="/about">About Us</Link></li>
+
+                        {/* Footer Widget: Useful Links */}
+                        <div className="w-full md:w-1/3 mb-8">
+                            <div>
+                                <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
+                                <ul className="space-y-2">
+                                    <li><Link to="/" className="text-blue-400 hover:underline">Home</Link></li>
+                                    <li><Link to="/hotel" className="text-blue-400 hover:underline">Hotels</Link></li>
+                                    <li><Link to="/tripideas" className="text-blue-400 hover:underline">Trip Ideas</Link></li>
+                                    <li><Link to="/blog" className="text-blue-400 hover:underline">Blog</Link></li>
+                                    <li><Link to="/contact" className="text-blue-400 hover:underline">Contact Us</Link></li>
+                                    <li><Link to="/about" className="text-blue-400 hover:underline">About Us</Link></li>
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
-                            <div className="footer-widget">
-                                <div className="footer-widget-heading">
-                                    <h3>Subscribe</h3>
-                                </div>
-                                <div className="footer-text mb-25">
-                                    <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                                </div>
-                                <div className="subscribe-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="Email Address" />
-                                        <button><i className="fab fa-telegram-plane"></i></button>
-                                    </form>
-                                </div>
+
+                        {/* Footer Widget: Subscribe */}
+                        <div className="w-full md:w-1/3 mb-8">
+                            <div>
+                                <h3 className="text-lg font-semibold mb-4">Subscribe</h3>
+                                <p className="mb-4">Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                                <form className="flex">
+                                    <input type="text" placeholder="Email Address" className="p-2 rounded-l-md border border-gray-300 flex-grow" />
+                                    <button className="bg-blue-500 text-white p-2 rounded-r-md"><i className="fab fa-telegram-plane"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="copyright-area">
-                <div className="container">
-                    <div className="row text-center">
-                        <div className="col-xl-6 col-lg-6 text-center text-lg-left">
-                            <div className="copyright-text text-center">
-                                <p className='text-center'>Copyright &copy; 2024, All Right Reserved By <Link to="https://linktr.ee/abubakarnangri">Abu Bakar Siddique</Link></p>
-                            </div>
-                        </div>
-                    </div>
+
+            {/* Copyright Section */}
+            <div className="bg-gray-700 py-4">
+                <div className="container mx-auto text-center">
+                    <p className="text-sm">
+                        Copyright &copy; 2024, All Right Reserved By <Link to="https://linktr.ee/abubakarnangri" className="text-blue-400 hover:underline">Abu Bakar Siddique</Link>
+                    </p>
                 </div>
             </div>
         </footer>
