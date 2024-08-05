@@ -13,6 +13,7 @@ import VerifyOTP from './CredentialsPages/VerifyOTP';
 import ResetPassword from './CredentialsPages/ResetPassword';
 import PasswordChanged from './CredentialsPages/PasswordChanged';
 import SearchedFlight from './Home/SearchedFlight';
+import PassengerDetails from './Home/PassengerDetails';
 
 
 const RouteMenu = () => {
@@ -29,6 +30,7 @@ const RouteMenu = () => {
                 <Route path='/reset-password' element={<ResetPassword/>}/>
                 <Route path='/password-changed' element={<PasswordChanged/>}/>
                 <Route path='/search-flight' element={<SearchedFlight/>}/>
+                <Route path='/passenger-details' element={<PassengerDetails/>}/>
                 <Route path='/blog' element={<Blog/>}/>
                 <Route path='/contact' element={<Contact/>}/>
                 <Route path='/hotel' element={<Hotel/>}/>

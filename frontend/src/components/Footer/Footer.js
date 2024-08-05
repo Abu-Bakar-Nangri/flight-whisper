@@ -5,8 +5,8 @@ import logo from '../../Images/logo.png';
 
 export default function Footer() {
     return (
-        <footer className=" py-10 bg-footer-back text-white">
-            <div className=" container mx-auto px-10 ">
+        <footer className=" py-6 bg-footer-back text-white">
+            <div className=" container mx-auto px-6 ">
                 {/* Contact Information */}
                 <div className="pt-5 pb-5  ">
                     <div className="flex flex-wrap justify-between">
@@ -76,8 +76,8 @@ export default function Footer() {
                                 <h3 className="text-lg font-semibold mb-4">Subscribe</h3>
                                 <p className="mb-4">Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
                                 <form className="flex">
-                                    <input type="text" placeholder="Email Address" className="p-2 rounded-l-md border border-gray-300 flex-grow" />
-                                    <button className="bg-blue-500 text-white p-2 rounded-r-md"><i className="fab fa-telegram-plane"></i></button>
+                                    <input type="text" placeholder="Email Address" className=" px-4 w-30 ring-1 ring-slate-200  border-gray-300 flex-grow" />
+                                    <button className="bg-blue-500 text-white p-2 "><i className="fab fa-telegram-plane"></i></button>
                                 </form>
                             </div>
                         </div>

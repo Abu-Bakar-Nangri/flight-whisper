@@ -46,6 +46,7 @@ const SearchedFlight = () => {
     };
   }, []);
 
+
   return (
     <> 
     <Header/>
@@ -66,9 +67,9 @@ const SearchedFlight = () => {
       </div>
       <h2 className="font-semibold text-left text-2xl py-4">Make a Booking</h2>
       <div className="flex justify-around items-center">
-        <div className="border-b-2 text-left border-slate-500 w-auto flex justify-start items-center">
-          <h1 className="text-3xl font-semibold text-slate-500">1</h1>
-          <sub className="px-2 text-base">Flights</sub>
+        <div className="border-b-2 text-left border-slate-900 w-auto flex justify-start items-center">
+          <h1 className="text-3xl font-semibold text-slate-900">1</h1>
+          <sub className="px-2 text-base ext-slate-900">Flights</sub>
         </div>
         <div className="border-b-2 text-left border-slate-400 w-auto flex justify-start items-center">
           <h1 className="text-3xl font-semibold text-slate-400">2</h1>
@@ -122,7 +123,7 @@ const SearchedFlight = () => {
         </>
       ) : (
         <>
-          <p>No flights found</p>
+          <p className="text-center py-10 font-medium text-lg">No flights found</p>
         </>
       )}
       {showScrollTopButton && (

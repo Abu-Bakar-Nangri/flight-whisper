@@ -9,7 +9,7 @@
 .link-visit,
 .link-buy-tickets,
 .social-links {
-  color: var(--white-color);
+  color: var(--black-color);
   text-decoration: none;
   font-size: 0.8rem;
   padding: 0px 10px;

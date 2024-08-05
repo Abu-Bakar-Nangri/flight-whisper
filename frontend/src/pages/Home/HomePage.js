@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import CSS from "./HomePage.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -124,6 +124,31 @@ const HomePage = () => {
   const [range, setRange] = useState(6);
   const [loading, setLoading] = useState(false);
   const [click, setClick] = useState(false);
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false);
+
+
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setShowScrollTopButton(true);
+    } else {
+      setShowScrollTopButton(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
   const handleData = () => {
     setLoading(true);
@@ -223,7 +248,7 @@ const HomePage = () => {
         <TrendingCard places={places.slice(0, range)} />
       </div>
 
-      <div className="container">
+      <div className="container mx-auto px-4 mx-2">
         <h3 className={CSS["slider-header"]}>Popular Flight</h3>
 
         <Slider {...settings}>
@@ -240,14 +265,22 @@ const HomePage = () => {
           ))}
         </Slider>
       </div>
-      <div className={`${CSS["trending-container"]} container mx-auto`}>
+      <div className={`${CSS["trending-container"]} container mx-auto py-2`}>
       <h1>Booking flights with FlightWhisper</h1>
         <Accordion />
       </div>
-      <div className={`${CSS["trending-container"]} container mx-auto`}>
+      <div className={`${CSS["trending-container"]} container mx-auto px-4 py-8 -z-9999`}>
       <LocationMap latitude={null} longitude={null} />
       </div>
       <Footer />
+      {showScrollTopButton && (
+        <button
+          onClick={scrollToTop}
+          className=" z-99999 fixed bottom-10 right-10 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-700"
+        >
+          Scroll to Top
+        </button>
+      )}
     </div>
   );
 };

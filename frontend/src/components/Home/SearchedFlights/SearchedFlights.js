@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchedFlights = ({ flight }) => {
+  const navigate = useNavigate()
   const [fareTermModel,setFareTermModel]=useState(false)
   if (!flight) {
     return <div>No flight data available</div>;
@@ -61,6 +63,10 @@ const SearchedFlights = ({ flight }) => {
     alert("fare details")
   }
 
+  const handleSelectedFlight = () => {
+    navigate('/passenger-details');
+  };
+
   return (
     <div className="w-10/12 ring-1 ring-slate-200 my-6 py-6 px-6 container mx-auto relative border-t-4 border-slate-500 shadow stroke-slate-300">
       <div className="mb-4 flex justify-between items-center">
@@ -116,7 +122,8 @@ const SearchedFlights = ({ flight }) => {
         </div>
         <div className="flex justify-center items-center flex-col">
           <p className="py-2 text-lg font-semibold">PKR {price || "N/A"}</p>
-          <button className="cursor-pointer hover:underline h-10 px-12 bg-slate-500 rounded flex justify-center items-center text-white">
+          <button className="cursor-pointer hover:underline h-10 px-12 bg-slate-500 rounded flex justify-center items-center text-white"
+          onClick={handleSelectedFlight}>
             Select
           </button>
         </div>

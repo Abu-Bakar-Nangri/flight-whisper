@@ -53,7 +53,7 @@ const Accordion = () => {
       
 
     return (
-        <div className={CSS.accordion}>
+        <div className='container mx-auto px-4  grid  gap-2 grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 '>
             {accordionItems.map((item, index) => (
                 <div key={index} className={CSS.accordionItem}>
                     <div className={CSS.accordionHeader} onClick={() => toggleAccordion(item.question)}>

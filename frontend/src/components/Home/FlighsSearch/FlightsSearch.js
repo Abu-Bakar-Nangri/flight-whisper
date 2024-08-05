@@ -187,7 +187,7 @@ const FlightsSearch = () => {
     };
 
     return (
-        <div>
+        <div className='container mx-auto'>
             <ToastContainer />
             <div className={CSS['radio-container']}>
                 <input type='radio' name='radio' value={'return'} checked={tripType === 'return'} onChange={handleRadioChange} />
